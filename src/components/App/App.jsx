@@ -44,8 +44,6 @@ function App() {
             </header>
             <p>Gallery goes here</p>
             <GalleryList galleryList={galleryList} addLike={addLike} />
-            <br></br>
-            <img src="images/goat_small.jpg"/>
         </div>
     );
 }

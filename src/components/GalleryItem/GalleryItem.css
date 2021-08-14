@@ -1,0 +1,27 @@
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.description {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+}
+
+.itemCard {
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px black solid;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+};
+
+button {
+    margin-top: 20px;    
+}
+
+/* I don't like styling. Half the time I enter a margin it's just totally ignored... -_- */
