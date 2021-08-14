@@ -24,13 +24,26 @@ function App() {
         })
     };
 
+    const addLike = (id) => {
+        axios({
+          method: 'PUT',
+          url: `/gallery/like/${id}`
+        }).then(response => {
+          console.log('sucessfully liked the image: ', id);
+          fetchGalleryList();
+        }).catch(error => {
+          console.log(`Failed to PUT new like to item ${id}: `, error);
+          alert('Failed to PUT. See console for details.');
+        })
+    }
+
     return (
         <div className="App">
             <header className="App-header">
                 <h1 className="App-title">Gallery of My Life</h1>
             </header>
             <p>Gallery goes here</p>
-            <GalleryList galleryList={galleryList} />
+            <GalleryList galleryList={galleryList} addLike={addLike} />
             <br></br>
             <img src="images/goat_small.jpg"/>
         </div>
