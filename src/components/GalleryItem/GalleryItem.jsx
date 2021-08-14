@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import './GalleryItem.css';
 
 function GalleryItem ({item, addLike}) {
 
@@ -10,12 +11,12 @@ function GalleryItem ({item, addLike}) {
         console.log('in swap. currently display value: ', displayValue)
         // logic if picture, change to text, if text change to picture
         if (imgOrTxt) {
-                // return the image text or whatever use a className for formatting
-                console.log(item.description)
-                setDisplayValue(<p>{item.description}</p>);
-        }   else {
+            // return the image text or whatever use a className for formatting
+            setDisplayValue(<div className="description">{item.description}</div>);
+        } else {
             setDisplayValue(<img src={item.path} />);
-        }         // return the actual image using className for css
+        };
+        // return the actual image using className for css
         setImgOrTxt(!imgOrTxt);
     }
 
@@ -26,12 +27,12 @@ function GalleryItem ({item, addLike}) {
     }
 
     return (
-        <>
+        <div className="itemCard">
             {/* will need to add major styling so that the div isn't so huge... */}
-            <div onClick={swap} value={displayValue}>{displayValue}</div>
+            <div onClick={swap}>{displayValue}</div>
             <button onClick={onButtonClick}>love it!</button>
             <p>{item.likes} people love this!</p>
-        </>
+        </div>
     );
 
 }
