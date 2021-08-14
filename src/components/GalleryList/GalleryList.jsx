@@ -1,10 +1,10 @@
 import GalleryItem from '../GalleryItem/GalleryItem';
 
-function GalleryList({galleryList}) {
+function GalleryList({galleryList, addLike}) {
 
     return (
         <>
-            {galleryList.map(element => <GalleryItem item={element} />)}
+            {galleryList.map(element => <GalleryItem item={element} addLike={addLike} />)}
         </>
     );
 };
