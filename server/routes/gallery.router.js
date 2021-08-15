@@ -6,7 +6,6 @@ const pool = require('../modules/pool')
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
-    console.log(req.params);
     const galleryId = req.params.id;
     sqlQuery = `UPDATE "gallery"
         SET "likes" = "likes" + 1
@@ -28,12 +27,30 @@ router.get('/', (req, res) => {
         `;
     pool.query(sqlQuery).then(dbRes => {
         console.log('Successful GET from db.');
-        console.log(dbRes.rows)
         res.send(dbRes.rows);
     }).catch(error => {
         console.log('Failed to GET from db.')
         res.sendStatus(500);
     })
 }); // END GET Route
+
+// POST Route
+router.post('/', (req, res) => {
+    let sqlQuery = `
+        INSERT INTO "gallery"
+        ("path", "description", "likes")
+        VALUES ($1, $2, $3)
+        `;
+    let sqlParams = [req.body.path, req.body.description, req.body.likes];
+    pool.query(sqlQuery, sqlParams).then(dbResposne => {
+        console.log('Successful POST to db.');
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('failed to POST to db: ', error)
+        res.sendStatus(500);
+    });
+})
+
+
 
 module.exports = router;

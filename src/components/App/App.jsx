@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import GalleryList from '../GalleryList/GalleryList';
+import GalleryForm from '../GalleryForm/GalleryForm';
 
 function App() {
 
@@ -37,12 +38,28 @@ function App() {
         })
     }
 
+    const addImage = (path, description) => {
+        // collect info from the state variables managing that - create those and pass them through
+        // send to server
+        axios({
+            method: 'POST',
+            url: '/gallery',
+            data: {path, description, likes: 0}
+        }).then(response => {
+            console.log('Successfully Posted new info.');
+            fetchGalleryList();
+        }).catch(error => {
+            console.log('POST failed: ', error);
+            alert('Failed to POST')
+        });
+    }
+
     return (
         <div className="App">
             <header className="App-header">
                 <h1 className="App-title">Gallery of My Life</h1>
             </header>
-            <p>Gallery goes here</p>
+            <GalleryForm addImage={addImage}/>
             <GalleryList galleryList={galleryList} addLike={addLike} />
         </div>
     );
