@@ -24,7 +24,7 @@ function GalleryForm ({addImage}) {
         <input type="text" placeholder="description of image" onChange={(event) => {
             setDescriptionInput(event.target.value)
             }} />
-            
+
         <button onClick={onSubmit}>Submit</button>
         </>
     );
