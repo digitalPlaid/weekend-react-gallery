@@ -30,7 +30,7 @@ function App() {
           url: `/gallery/like/${id}`
         }).then(response => {
           console.log('sucessfully liked the image: ', id);
-          fetchGalleryList();
+          fetchGalleryList(); 
         }).catch(error => {
           console.log(`Failed to PUT new like to item ${id}: `, error);
           alert('Failed to PUT. See console for details.');

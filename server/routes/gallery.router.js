@@ -12,9 +12,9 @@ router.put('/like/:id', (req, res) => {
         SET "likes" = "likes" + 1
         WHERE "id" = $1
         `;
-    pool.query(sqlQuery, [galleryID]).then(databaseResponse => {
+    pool.query(sqlQuery, [galleryId]).then(databaseResponse => {
         console.log('successfully PUT data to DB')
-        sendStatus(200);
+        res.sendStatus(200);
     }).catch(error => {
         res.sendStatus(500);
     })
