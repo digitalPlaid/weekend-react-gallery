@@ -1,19 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const galleryItems = require('../modules/gallery.data');
-
+const pool = require('../modules/pool')
 // DO NOT MODIFY THIS FILE FOR BASE MODE
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
     console.log(req.params);
     const galleryId = req.params.id;
-    for(const galleryItem of galleryItems) {
-        if(galleryItem.id == galleryId) {
-            galleryItem.likes += 1;
-        }
-    }
-    res.sendStatus(200);
+    sqlQuery = `UPDATE "gallery"
+        SET "likes" = "likes" + 1
+        WHERE "id" = $1
+        `;
+    pool.query(sqlQuery, [galleryID]).then(databaseResponse => {
+        console.log('successfully PUT data to DB')
+        sendStatus(200);
+    }).catch(error => {
+        res.sendStatus(500);
+    })
 }); // END PUT Route
 
 // GET Route
