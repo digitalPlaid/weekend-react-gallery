@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import './GalleryItem.css';
 
-function GalleryItem ({item, addLike}) {
+function GalleryItem ({item, addLike, deleteItem}) {
 
     // could use state (boolean var) here to manage what's being presented, image vs text.
     let [imgOrTxt, setImgOrTxt] = useState(true); // default (false) is img
@@ -20,18 +20,23 @@ function GalleryItem ({item, addLike}) {
         setImgOrTxt(!imgOrTxt);
     }
 
-    const onButtonClick = () => {
+    const onLike = () => {
         // wrapper function so we can pass the function that will 
         //actually do the work some context 
         addLike(item.id);
+    }
+
+    const onDelete = () => {
+        deleteItem(item.id);
     }
 
     return (
         <div className="itemCard">
             {/* will need to add major styling so that the div isn't so huge... */}
             <div onClick={swap}>{displayValue}</div>
-            <button onClick={onButtonClick}>love it!</button>
+            <button onClick={onLike}>love it!</button>
             <p>{item.likes} people love this!</p>
+            <button onClick={onDelete}>Delete</button>
         </div>
     );
 

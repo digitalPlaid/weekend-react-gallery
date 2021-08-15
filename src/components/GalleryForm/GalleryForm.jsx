@@ -11,20 +11,22 @@ function GalleryForm ({addImage}) {
 
     const onSubmit = () => {
         addImage(pathInput, descriptionInput)
+        setPathInput('');
+        setDescriptionInput('');
     }
 
     return (
         <>
         {/* input for image url */}
-        <input type="text" placeholder="image url" onChange={(event) => {
+        <input type="text" placeholder="image url" value={pathInput} onChange={(event) => {
             setPathInput(event.target.value)
             }}/>
 
         {/* input for image description */}
-        <input type="text" placeholder="description of image" onChange={(event) => {
+        <input type="text" placeholder="description of image" value={descriptionInput} onChange={(event) => {
             setDescriptionInput(event.target.value)
             }} />
-            
+
         <button onClick={onSubmit}>Submit</button>
         </>
     );

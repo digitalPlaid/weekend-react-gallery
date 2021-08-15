@@ -50,8 +50,18 @@ function App() {
             fetchGalleryList();
         }).catch(error => {
             console.log('POST failed: ', error);
-            alert('Failed to POST')
+            alert('Failed to POST. See console for details.')
         });
+    }
+
+    const deleteItem = (id) => {
+        axios.delete(`/gallery/${id}`).then(response => {
+            console.log(`Succesful DELETE of ${id}`);
+            fetchGalleryList();
+        }).catch(error => {
+            console.log('Failed to DELETE: ', error);
+            alert('Failed to delete. See console for details.')
+        })
     }
 
     return (
@@ -60,7 +70,7 @@ function App() {
                 <h1 className="App-title">Gallery of My Life</h1>
             </header>
             <GalleryForm addImage={addImage}/>
-            <GalleryList galleryList={galleryList} addLike={addLike} />
+            <GalleryList galleryList={galleryList} addLike={addLike} deleteItem={deleteItem} />
         </div>
     );
 }
