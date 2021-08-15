@@ -22,7 +22,18 @@ router.put('/like/:id', (req, res) => {
 
 // GET Route
 router.get('/', (req, res) => {
-    res.send(galleryItems);
+    let sqlQuery = `
+        SELECT * FROM "gallery" 
+        ORDER BY "id"
+        `;
+    pool.query(sqlQuery).then(dbRes => {
+        console.log('Successful GET from db.');
+        console.log(dbRes.rows)
+        res.send(dbRes.rows);
+    }).catch(error => {
+        console.log('Failed to GET from db.')
+        res.sendStatus(500);
+    })
 }); // END GET Route
 
 module.exports = router;
